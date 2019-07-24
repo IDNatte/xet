@@ -1,0 +1,8 @@
+layout/dist/main.js
+layout/dist/main.riot.js
+node_modules/
+dist/*
+layout/dist/main.js
+.gitlab-ci.yml
+yarn-error.log
+yarn.lock

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/print.css" media="print">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/material-icons.css">
+  <link rel="stylesheet" href="css/snackbar.min.css">
+  <link rel="stylesheet" href="css/emoji.css">
+  <link rel="stylesheet" href="css/extra.css">
+  <title>Xenon</title>
+
+  <!-- PDF javascript library -->
+
+  <script src="js/pdf.js"></script>
+  <script src="js/pdf.worker.js"></script>
+
+  <!-- PDF javascript library -->
+
+</head>
+<body>
+  <main />
+</body>
+
+<script>window.$ = window.jQuery = require('./js/jquery.min.js');</script>
+<script src="js/materialize.min.js"></script>
+<script src="js/snackbar.min.js"></script>
+<script src="js/riot.min.js"></script>
+<script src="js/rtag.min.js"></script>
+<script src="dist/main.min.js"></script>
+
+
+<script>
+  // global events
+  var sharedObservable = riot.observable();
+  
+  // mount riot module
+  riot.mount('*');
+</script>
+
+</html>

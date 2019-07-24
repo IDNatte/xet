@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>About</title>
+
+</head>
+<style>
+  @font-face {
+    font-family: RobotoRegular;
+    src: url(fonts/roboto/Roboto-Regular.woff2);
+  }
+
+  @font-face {
+    font-family: RobotoBold;
+    src: url(fonts/roboto/Roboto-Bold.woff2);
+  }
+
+  @font-face {
+    font-family: RobotoMedium;
+    src: url(fonts/roboto/Roboto-Medium.woff2);
+  }
+
+  @font-face {
+    font-family: RobotoLight;
+    src: url(fonts/roboto/Roboto-Light.woff2);
+  }
+
+  @font-face {
+    font-family: RobotoThin;
+    src: url(fonts/roboto/Roboto-Thin.woff2);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: RobotoBold;
+  }
+
+  *{
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: RobotoRegular;
+    margin: 0;
+  }
+
+  .wrapper .image-header {
+    display: block;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+  }
+
+  .wrapper .image-header .image-wrapper {
+    padding: 20px;
+  }
+
+
+  .wrapper .image-header .image-wrapper .limage {
+    margin: auto;
+    display: block;
+    width: 40%;
+  }
+
+  .information .title {
+    text-align: center;
+  }
+
+  .information .content-wrapper {
+    margin: auto 25px;
+  }
+
+  .information .content-wrapper .body {
+    margin: 20px 25px;
+  }
+
+  .information .content-wrapper .body ul{
+    font-family: RobotoLight;
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .information .content-wrapper .body ul li {
+    padding: 5px;
+  }
+
+  .information .content-wrapper .footer {
+    text-align: right;
+    margin-top: 30px;
+  }
+  
+  .information .content-wrapper .footer a{
+    font-family: RobotoLight;
+    text-decoration: none;
+    margin: 5px;
+    padding: 5px 10px;
+    color: #000;
+    border: 1px solid black;
+    border-radius: 2.5px;
+  }
+
+  .loading {
+    -webkit-animation: rotation 2s infinite linear;
+  }
+
+  .upstat {
+    padding: 0 20px;
+  }
+
+  @-webkit-keyframes rotation {
+    from {
+      -webkit-transform: rotate(0deg);
+    }to {
+      -webkit-transform: rotate(-359deg);
+    }
+  }
+
+</style>
+<body>
+  <div class="wrapper">
+    <div class="image-header">
+      <div class="image-wrapper">
+        <img class="limage loader" src="images/icon-white.png">
+      </div>
+      <span class="upstat"></span>
+    </div>
+    <div class="information">
+      <div class="title">
+        <h2>Xenon Version <span class="version"></span></h2>
+      </div>
+      <div class="content-wrapper">
+        <div class="body">
+          <ul>
+            <li>
+              <span>Copyright &copy; 2018 Xenon Technologix</span>
+            </li>
+            <li>
+              <span>Electron version <span class="ch-vers"></span></span>
+            </li>
+            <li>
+              <span>Node Version <span class="node-vers"></span></span>
+            </li>
+          </ul>
+        </div>
+        <div class="footer">
+          <a href="#" onclick="reportErr()">Report Bug</a>
+          <a href="#" onclick="closeWin()">Close</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  var electron = require('electron');
+  var renderer = electron.ipcRenderer;
+
+  var ver = document.querySelector('.version');
+  var nver = document.querySelector('.node-vers');
+  var cver = document.querySelector('.ch-vers');
+
+  ver.innerHTML = electron.remote.app.getVersion();
+  nver.innerHTML = process.versions.node;
+  cver.innerHTML = process.versions.electron;
+
+
+  function reportErr() {
+    electron.shell.openExternal('https://github.com/IDNatte/xenon-technologix/issues/new');
+  }
+
+  function closeWin() {
+    var t = electron.remote.getCurrentWindow();
+    t.close();
+  }
+
+  function addClass(ele,cls) {  
+    if (!hasClass(ele,cls)) ele.className += " "+cls;
+  }
+  
+  function removeClass(ele,cls) {
+    if (hasClass(ele,cls)) {      
+      var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)'); 
+      ele.className=ele.className.replace(reg,' ');  
+    }
+  }
+
+  function hasClass(ele,cls) {
+    return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // triggering update
+    renderer.send('update-op');
+    renderer.on('upreslt', function(event, args) {
+      var stat = document.querySelector('.upstat');
+      var loader = document.querySelector('.loader');
+      addClass(loader, 'loading');
+      stat.innerHTML = args.message;
+
+      if (args.status === 'noupdate') {
+        removeClass(loader, 'loading');
+      }else if (args.status === 'error') {
+        removeClass(loader, 'loading');
+      }
+    })
+  })
+</script>
+
+</html>

@@ -1,0 +1,79 @@
+header, main{
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+.sidebar-gradient {
+  background: linear-gradient(-55deg, #EE7752, #E73C7E, #23A6D5, #23D5AB, #23d56a);
+  animation: Gradient 15s ease infinite;
+  -webkit-animation: Gradient 25s ease infinite;
+  background-size: 400% 400%;
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+.nav-wrapper .input-field input[type=search] {
+	height: 64px;
+	width: 100%;
+}
+.nav-wrapper input[type="search"]:focus {
+	right: 0;
+
+}
+.input-field label {
+	max-height: 64px;
+}
+
+.input-field input[type=search]:focus:not(.browser-default) {
+	background-color: transparent;
+	color: white;
+}
+
+
+loader-object {
+	display: flex;
+	height: 80vh;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.snackbar-dspcs {
+	display: flex!important;
+}
+
+.snackbar-dspcs span {
+	margin-right: 20px;
+	align-items: center;
+}
+
+.snackbar-dspcs i {
+	align-items: center;
+}
