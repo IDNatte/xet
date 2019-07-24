@@ -1,6 +1,6 @@
 {
   "name": "Xenon",
-  "version": "1.0.32",
+  "version": "1.02.32",
   "description": "archive manager for some government stuff",
   "main": "main.js",
   "author": "Xenon Technologix",
@@ -26,17 +26,6 @@
     "fs-extra": "^8.1.0",
     "jquery": "^3.4.1",
     "lokijs": "^1.5.7",
-    "electron": "^1.8.8",
-    "electron-builder": "^20.5.1",
-    "electron-is-dev": "^0.3.0",
-    "elemon": "^5.0.3"
-  },
-  "dependencies": {
-    "electron-updater": "^2.21.3",
-    "first-run": "^1.2.0",
-    "fs-extra": "^5.0.0",
-    "jquery": "^3.4.0",
-    "lokijs": "^1.5.3"
   },
   "homepage": "https://github.com/IDNatte/xet.git",
   "build": {
