@@ -1,6 +1,6 @@
 {
   "name": "Xenon",
-  "version": "1.02.32",
+  "version": "1.2.32",
   "description": "archive manager for some government stuff",
   "main": "main.js",
   "author": "Xenon Technologix",
@@ -12,7 +12,7 @@
     "layout:build": "riot --compact ./layout/src/ ./layout/dist/main.js && uglifyjs --compress --mangle --output ./layout/dist/main.min.js -- ./layout/dist/main.js",
     "build:pack": "electron-builder --dir",
     "build:dist": "electron-builder",
-    "dist:publish": "build --win -p always"
+    "dist:publish": "electron-builder --publish always"
   },
   "devDependencies": {
     "electron": "^5.0.8",
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/IDNatte/xet.git",
   "build": {
-    "buildVersion": "0.0.3",
+    "buildVersion": "0.2.1",
     "appId": "xenon.technologix.id",
     "publish": [
       "github"

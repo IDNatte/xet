@@ -38,6 +38,8 @@ function createWindow () {
   win.on('closed', () => {
     win = null
   })
+
+  win.setMenuBarVisibility(false)
 }
 
 function openPDF(pathFile) {
