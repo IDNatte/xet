@@ -9,7 +9,7 @@
     "postinstall": "electron-builder install-app-deps",
     "main:appsdebug": "./node_modules/.bin/electron ./main.js",
     "layout:watch": "riot --watch --compact ./layout/src/ ./layout/dist/main.riot.js",
-    "layout:build": "riot --compact ./layout/src/ ./layout/dist/main.js && uglifyjs --compress --mangle --output ./layout/dist/main.min.js -- ./layout/dist/main.min.js",
+    "layout:build": "riot --compact ./layout/src/ ./layout/dist/main.js && uglifyjs --compress --mangle --output ./layout/dist/main.min.js -- ./layout/dist/main.js",
     "build:pack": "electron-builder --dir",
     "build:dist": "electron-builder",
     "dist:publish": "build --win -p always"
@@ -21,11 +21,12 @@
     "elemon": "^5.0.3"
   },
   "dependencies": {
+    "electron-pdf-window": "^1.0.12",
     "electron-updater": "^4.1.2",
     "first-run": "^2.0.0",
     "fs-extra": "^8.1.0",
     "jquery": "^3.4.1",
-    "lokijs": "^1.5.7",
+    "lokijs": "^1.5.7"
   },
   "homepage": "https://github.com/IDNatte/xet.git",
   "build": {

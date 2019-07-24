@@ -1,5 +1,6 @@
 const { dialog, ipcMain, app, BrowserWindow, webContents } = require('electron');
 const { autoUpdater } = require('electron-updater');
+const PDFWindow = require('electron-pdf-window');
 const exfs = require("fs-extra");
 const loki = require("lokijs");
 const path = require('path');
@@ -22,7 +23,10 @@ function createWindow () {
     width: 1280,
     height: 680,
     minHeight: 768,
-    minWidth: 1024
+    minWidth: 1024,
+    webPreferences: {
+      nodeIntegration: true
+    }
   })
 
   win.loadURL(url.format({
@@ -36,19 +40,13 @@ function createWindow () {
   })
 }
 
-function openPDF(path) {
-  const pmw = new BrowserWindow({
-    parent: win,
-    modal: true,
-    maximizable: false,
+function openPDF(pathFile) {
+  const pmw = new PDFWindow({
     width: 800,
-    height: 450,
-    webPreferences: {
-      plugins: true
-    }
+    height: 600
   })
 
-  pmw.loadURL(path);
+  pmw.loadURL(pathFile);
 }
 
 
